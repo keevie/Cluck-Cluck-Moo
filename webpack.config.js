@@ -1,17 +1,21 @@
+const path = require('path');
+
 module.exports = {
+  context: __dirname,
   entry: "./lib/cluck_cluck_moo.js",
   output: {
-    filename: "./lib/bundle.js"
+    path: path.resolve(__dirname, 'lib'),
+    filename: "bundle.js"
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['*', '.js']
   },
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015'],
         }
