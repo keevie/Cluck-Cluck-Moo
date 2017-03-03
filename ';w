@@ -1,0 +1,9 @@
+export const moveCamera = (world, chicken) => {
+  if (chicken.y !== window.innerHeight * 0.5) {
+    world.y = -chicken.y + window.innerHeight * 0.5;
+  }
+};
+
+export const generateWorld = (generateTrampolines, generateClouds, world, chicken) => {
+
+}
