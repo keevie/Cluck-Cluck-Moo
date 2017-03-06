@@ -1023,7 +1023,7 @@ var Game = function () {
 
       this.background = new createjs.Container();
       this.collidables = [];
-      this.generateTrampolines(5, 100);
+      // this.generateTrampolines(5, 100);
       this.background.addChild(this.assets.ground);
 
       for (var i = 0; i < 21; i++) {
@@ -1091,8 +1091,8 @@ var Game = function () {
       (0, _movements.fallWithGravity)(this.assets.chicken);
       (0, _collisions.checkCollisions)(this.assets.chicken, this.collidables, this.background, this.displayScore);
       (0, _camera.moveCamera)(this.world, this.assets.chicken);
-      (0, _loss_logic.checkIfLose)(this.assets.chicken, this.stage);
       this.generateWorld();
+      (0, _loss_logic.checkIfLose)(this.assets.chicken, this.stage);
       this.stage.update();
     }
   }]);
@@ -1113,8 +1113,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var moveCamera = exports.moveCamera = function moveCamera(world, chicken) {
-  if (chicken.y !== window.innerHeight * 0.5) {
-    world.cameraMoveCounter += world.y - (window.innerHeight * 0.5 - chicken.y);
+  if (chicken.y !== window.innerHeight * 0.55) {
+    world.cameraMoveCounter += world.y - (window.innerHeight * 0.55 - chicken.y);
     world.y = window.innerHeight * 0.55 - chicken.y;
   }
 };
@@ -1172,7 +1172,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var checkIfLose = exports.checkIfLose = function checkIfLose(chicken, stage, tick) {
-  if (chicken.score > 0 && (chicken.y > 324 || chicken.yVelocity > 20)) {
+  if (chicken.score > 0 && (chicken.y > 324 || chicken.yVelocity > 25)) {
     var loseBox = new createjs.Shape();
     loseBox.graphics.beginFill('white');
     loseBox.alpha = 0.85;
