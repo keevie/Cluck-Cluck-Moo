@@ -1180,6 +1180,13 @@ var checkIfLose = exports.checkIfLose = function checkIfLose(chicken, stage, tic
     loseBox.graphics.endFill();
     stage.addChild(loseBox);
     createjs.Ticker.removeAllEventListeners();
+    if (chicken.yVelocity > 25) {
+      setTimeout(function () {
+        return createjs.Sound.play('splat');
+      }, 1000);
+    } else {
+      createjs.Sound.play('splat');
+    }
   }
 };
 
@@ -1221,6 +1228,9 @@ var setupManifest = function setupManifest() {
   }, {
     src: './assets/moo.wav',
     id: 'moo'
+  }, {
+    src: './assets/splat.wav',
+    id: 'splat'
   }, {
     src: './assets/boing.wav',
     id: 'boing'
