@@ -520,16 +520,18 @@ var bounce = exports.bounce = function bounce(chicken) {
 };
 
 var jump = exports.jump = function jump(chicken) {
-  chicken.y = 288;
-  chicken.yVelocity = -12;
+  if (chicken.y === 325) {
+    chicken.y = 324;
+    chicken.yVelocity = -12;
+  }
 };
 
 var fallWithGravity = exports.fallWithGravity = function fallWithGravity(chicken) {
-  if (chicken.y < 289) {
+  if (chicken.y < 325) {
     chicken.y += chicken.yVelocity;
     chicken.yVelocity += 0.2;
   } else {
-    chicken.y = 289;
+    chicken.y = 325;
   }
 };
 
@@ -1108,17 +1110,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var moveCamera = exports.moveCamera = function moveCamera(world, chicken) {
-  if (chicken.y >= 289) {
-    world.y = 130;
-    // if (world.y < 130 || world.y > 131) {
-
-    //   world.y += 2;
-    // }
-    return;
-  }
   if (chicken.y !== window.innerHeight * 0.5) {
     world.cameraMoveCounter += world.y - (window.innerHeight * 0.5 - chicken.y);
-    world.y = window.innerHeight * 0.5 - chicken.y;
+    world.y = window.innerHeight * 0.55 - chicken.y;
   }
 };
 
@@ -1248,8 +1242,6 @@ var handleFileLoad = function handleFileLoad(assets, event) {
       ground.graphics.beginBitmapFill(event.result).drawRect(0, 20, 2000, 200);
       ground.tileW = 200;
       ground.y = 280;
-      ground.scaleX = 0.5;
-      ground.scaleY = 0.5;
       assets['ground'] = ground;
       return;
     case 'cloud1':
