@@ -519,9 +519,18 @@ var bounce = exports.bounce = function bounce(chicken) {
   chicken.yVelocity = -10;
 };
 
+var jump = exports.jump = function jump(chicken) {
+  chicken.y = 288;
+  chicken.yVelocity = -12;
+};
+
 var fallWithGravity = exports.fallWithGravity = function fallWithGravity(chicken) {
-  chicken.y += chicken.yVelocity;
-  chicken.yVelocity += 0.2;
+  if (chicken.y < 289) {
+    chicken.y += chicken.yVelocity;
+    chicken.yVelocity += 0.2;
+  } else {
+    chicken.y = 289;
+  }
 };
 
 var moveCows = exports.moveCows = function moveCows(cows) {
@@ -997,6 +1006,8 @@ var Game = function () {
   }, {
     key: 'run',
     value: function run() {
+      var _this = this;
+
       createjs.Ticker.on("tick", this.tick);
       createjs.Ticker.setFPS(60);
 
@@ -1009,11 +1020,14 @@ var Game = function () {
       this.background = new createjs.Container();
       this.collidables = [];
       this.generateTrampolines(5, 100);
+      this.background.addChild(this.assets.ground);
 
       for (var i = 0; i < 21; i++) {
         this.generateTrampolines(3, i * -300);
       }
-
+      this.stage.addEventListener('stagemousedown', function () {
+        return (0, _movements.jump)(_this.assets.chicken);
+      });
       this.world.addChild(this.background);
     }
   }, {
@@ -1094,6 +1108,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var moveCamera = exports.moveCamera = function moveCamera(world, chicken) {
+  if (chicken.y >= 289) {
+    world.y = 130;
+    // if (world.y < 130 || world.y > 131) {
+
+    //   world.y += 2;
+    // }
+    return;
+  }
   if (chicken.y !== window.innerHeight * 0.5) {
     world.cameraMoveCounter += world.y - (window.innerHeight * 0.5 - chicken.y);
     world.y = window.innerHeight * 0.5 - chicken.y;
@@ -1175,6 +1197,9 @@ var setupManifest = function setupManifest() {
     src: './assets/sprite-sheet-of-cow-walking.png',
     id: 'cow'
   }, {
+    src: './assets/ground.png',
+    id: 'ground'
+  }, {
     src: './assets/moo.wav',
     id: 'moo'
   }, {
@@ -1208,6 +1233,7 @@ var handleFileLoad = function handleFileLoad(assets, event) {
         framerate: 5
       });
       var chickenAnimation = new createjs.Sprite(chicken, 'walk');
+      chickenAnimation.y = 290;
       chickenAnimation.yVelocity = 0;
       assets['chicken'] = chickenAnimation;
       return;
@@ -1216,6 +1242,15 @@ var handleFileLoad = function handleFileLoad(assets, event) {
       trampoline.scaleX = 0.125;
       trampoline.scaleY = 0.125;
       assets['trampoline'] = trampoline;
+      return;
+    case 'ground':
+      var ground = new createjs.Shape();
+      ground.graphics.beginBitmapFill(event.result).drawRect(0, 20, 2000, 200);
+      ground.tileW = 200;
+      ground.y = 280;
+      ground.scaleX = 0.5;
+      ground.scaleY = 0.5;
+      assets['ground'] = ground;
       return;
     case 'cloud1':
       var cloud1 = new createjs.Bitmap(event.result);
