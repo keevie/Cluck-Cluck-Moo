@@ -545,9 +545,9 @@ var moveCows = exports.moveCows = function moveCows(cows) {
       cow.direction = 'right';
     }
     if (cow.direction === 'right') {
-      cow.x += 2;
+      cow.x += 3;
     } else {
-      cow.x -= 2;
+      cow.x -= 3;
     }
   });
 };
@@ -1244,11 +1244,18 @@ var startPreload = function startPreload(assets, startGame) {
   preload.on('fileload', handleFileLoad.bind(null, assets));
   preload.on('complete', function () {
     $("#mainProgress").hide();
-    startGame();
+    showInstructions(startGame);
   });
   preload.loadManifest(manifest);
 };
 
+var showInstructions = function showInstructions(startGame) {
+  $('#Instructions').show();
+  $('#Instructions').on('click', function () {
+    $('#Instructions').hide();
+    startGame();
+  });
+};
 var handleOverallProgress = function handleOverallProgress(event) {
   $("#mainProgress > .progress").width(preload.progress * $("#mainProgress").width());
 };
