@@ -1383,8 +1383,9 @@ var showInstructions = function showInstructions(startGame) {
   $('#Instructions').show();
   $('#Instructions').on('click', function () {
     $('#Instructions').hide();
-    var music = createjs.Sound.play('music', -1);
+    var music = createjs.Sound.play('music');
     music.volume = 0.4;
+    music.loop = true;
     startGame();
   });
 };
