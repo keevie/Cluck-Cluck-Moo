@@ -1113,9 +1113,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var moveCamera = exports.moveCamera = function moveCamera(world, chicken) {
-  if (chicken.y !== window.innerHeight * 0.55) {
-    world.cameraMoveCounter += world.y - (window.innerHeight * 0.55 - chicken.y);
-    world.y = window.innerHeight * 0.55 - chicken.y;
+  if (chicken.y !== 663 * 0.55) {
+    world.cameraMoveCounter += world.y - (663 * 0.55 - chicken.y);
+    world.y = 663 * 0.55 - chicken.y;
   }
 };
 
