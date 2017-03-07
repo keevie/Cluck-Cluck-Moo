@@ -995,6 +995,7 @@ var Game = function () {
 
     this.tick = this.tick.bind(this);
     this.generateTrampolines = this.generateTrampolines.bind(this);
+    this.cleanupTrampolines = this.cleanupTrampolines.bind(this);
     this.generateClouds = this.generateClouds.bind(this);
     this.generateCow = this.generateCow.bind(this);
     this.generateWorld = this.generateWorld.bind(this);
@@ -1047,6 +1048,15 @@ var Game = function () {
       }
     }
   }, {
+    key: 'cleanupTrampolines',
+    value: function cleanupTrampolines() {
+      var _this2 = this;
+
+      this.collidables = this.collidables.filter(function (collidable) {
+        return _this2.assets.chicken.y + 500 > collidable.y;
+      });
+    }
+  }, {
     key: 'generateCow',
     value: function generateCow(y) {
       // const cow = merge({}, this.assets.cow);
@@ -1085,6 +1095,7 @@ var Game = function () {
     key: 'tick',
     value: function tick(e) {
       (0, _movements.moveWithMouse)(this.stage, this.assets.chicken);
+      this.cleanupTrampolines();
       (0, _movements.moveCows)(this.collidables.filter(function (collidable) {
         return collidable.collidableType === 'cow';
       }));
