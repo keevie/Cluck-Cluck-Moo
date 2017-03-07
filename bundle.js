@@ -1240,9 +1240,17 @@ var setupManifest = function setupManifest() {
 var startPreload = function startPreload(assets, startGame) {
   preload = new createjs.LoadQueue(true);
   preload.installPlugin(createjs.Sound);
+  preload.on('progress', handleOverallProgress);
   preload.on('fileload', handleFileLoad.bind(null, assets));
-  preload.on('complete', startGame);
+  preload.on('complete', function () {
+    startGame();
+    $("#mainProgress").hide();
+  });
   preload.loadManifest(manifest);
+};
+
+var handleOverallProgress = function handleOverallProgress(event) {
+  $("#mainProgress > .progress").width(preload.progress * $("#mainProgress").width());
 };
 
 var handleFileLoad = function handleFileLoad(assets, event) {
