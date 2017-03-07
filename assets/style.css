@@ -12,7 +12,8 @@ body {
 }
 
 h1 {
-  font-family: sans-serif;
+  font-family: 'Ranchers', cursive;
+  font-size: 36px;
 }
 
 footer {
@@ -54,20 +55,54 @@ a {
 
 #Instructions {
   top: 120px;
+  font-family: 'Ranchers', cursive;
   position: absolute;
   display: none;
-  background-color: white;
+  background-color: rgba(255, 226, 90, 1);
+  border-radius: 4px;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+}
+
+#Instructions h2 {
+  font-family: 'Ranchers', cursive;
+  font-size: 28px;
+}
+
+#high-score h2 {
+  font-family: 'Ranchers', cursive;
+  font-size: 28px;
+}
+
+#high-score {
+  font-size: 18px;
+  font-family: 'Ranchers', cursive;
+  top: 120px;
+  position: absolute;
+  background-color: rgba(255, 226, 90, 1);
+  border-radius: 4px;
+  display: none;
+  font-family: 'Ranchers', cursive;
+  flex-direction: column;
+  align-items: center;
   width: 400px;
   height: 400px;
 }
 
-#high-score {
-  top: 120px;
-  position: absolute;
-  display: none;
-  background-color: white;
-  width: 400px;
-  height: 400px;
+#high-score button {
+  font-size: 24px;
+  font-family: 'Ranchers', cursive;
+  border: none;
+  background-color: rgba(255, 226, 90, 1);
+}
+
+#high-score button:hover {
+  cursor: pointer;
+  color: #fefccb;
 }
 
 html {

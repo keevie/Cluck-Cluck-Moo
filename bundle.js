@@ -1292,13 +1292,15 @@ var checkIfLose = exports.checkIfLose = function checkIfLose(chicken, stage, tic
     if (chicken.score >= highScore) {
       _cookies2.default.setItem('highScore', '' + chicken.score);
     }
-    $highScoreBox.append('Score: ' + chicken.score);
-    $highScoreBox.append('High Score: ' + highScore);
-    $highScoreBox.append("<button id='replay'>Play again</button>");
+    $highScoreBox.append('<h2>Score</h2>');
+    $highScoreBox.append('<p>' + chicken.score + '</p>');
+    $highScoreBox.append('<h2>High Score</h2>');
+    $highScoreBox.append('<p>' + highScore + '</p>');
+    $highScoreBox.append("<button id='replay'>Play again!</button>");
     $('#replay').on('click', function () {
       return window.location.reload(false);
     });
-    $highScoreBox.show();
+    $highScoreBox.css('display', 'flex');
 
     if (chicken.yVelocity > 25) {
       setTimeout(function () {
