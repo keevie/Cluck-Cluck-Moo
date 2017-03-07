@@ -1295,11 +1295,13 @@ var checkIfLose = exports.checkIfLose = function checkIfLose(chicken, stage, tic
     if (chicken.score >= highScore) {
       _cookies2.default.setItem('highScore', '' + chicken.score);
     }
+    createjs.Sound.stop();
     $highScoreBox.append('<h2>Score</h2>');
     $highScoreBox.append('<p>' + chicken.score + '</p>');
     $highScoreBox.append('<h2>High Score</h2>');
     $highScoreBox.append('<p>' + highScore + '</p>');
     $highScoreBox.append("<button id='replay'>Play again!</button>");
+    $highScoreBox.append("<p>Song by Disposable Planet</p>");
     $('#replay').on('click', function () {
       return window.location.reload(false);
     });
@@ -1351,6 +1353,9 @@ var setupManifest = function setupManifest() {
     src: './assets/ground.png',
     id: 'ground'
   }, {
+    src: './assets/music.ogg',
+    id: 'music'
+  }, {
     src: './assets/moo.wav',
     id: 'moo'
   }, {
@@ -1378,6 +1383,8 @@ var showInstructions = function showInstructions(startGame) {
   $('#Instructions').show();
   $('#Instructions').on('click', function () {
     $('#Instructions').hide();
+    var music = createjs.Sound.play('music', -1);
+    music.volume = 0.4;
     startGame();
   });
 };
