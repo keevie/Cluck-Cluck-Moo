@@ -1243,8 +1243,8 @@ var startPreload = function startPreload(assets, startGame) {
   preload.on('progress', handleOverallProgress);
   preload.on('fileload', handleFileLoad.bind(null, assets));
   preload.on('complete', function () {
-    startGame();
     $("#mainProgress").hide();
+    startGame();
   });
   preload.loadManifest(manifest);
 };
