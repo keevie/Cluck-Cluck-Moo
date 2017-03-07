@@ -61,6 +61,14 @@ a {
   height: 400px;
 }
 
+#high-score {
+  top: 120px;
+  position: absolute;
+  display: none;
+  background-color: white;
+  width: 400px;
+  height: 400px;
+}
 
 html {
   background: url(./farm-background.jpg) no-repeat center center fixed;
