@@ -1054,6 +1054,9 @@ var Game = function () {
       var _this2 = this;
 
       this.collidables = this.collidables.filter(function (collidable) {
+        if (_this2.assets.chicken.y + 500 < collidable.y) {
+          _this2.background.removeChild(collidable);
+        }
         return _this2.assets.chicken.y + 500 > collidable.y;
       });
     }
