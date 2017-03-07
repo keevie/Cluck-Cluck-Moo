@@ -1018,6 +1018,7 @@ var Game = function () {
 
       this.world.addChild(this.assets.chicken);
       this.assets.chicken.score = 0;
+      this.assets.chicken.scoreCounter = 0;
       this.displayScore = new createjs.Text('' + this.assets.chicken.score, "20px Arial", "#000000");
       this.stage.addChild(this.displayScore);
       this.displayScore.x = this.displayScore.y = 5;
@@ -1156,7 +1157,8 @@ var checkCollisions = exports.checkCollisions = function checkCollisions(chicken
       if (collidable.collidableType === 'trampoline') {
         background.removeChild(collidable);
         (0, _movements.bounce)(chicken);
-        chicken.score += 100;
+        chicken.score += 100 + chicken.scoreCounter;
+        chicken.scoreCounter += 10;
         displayScore.text = chicken.score;
         createjs.Sound.play('boing');
         collidables.splice(index, 1);
