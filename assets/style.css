@@ -33,15 +33,13 @@ a {
 }
 
 #mainProgress {
+  z-index: 2;
+  font-family: 'Ranchers', cursive;
   width: auto;
   height: 20px;
   position: absolute;
-  top: 400px;
-
+  top: 420px;
   width: 226px;
-  /* height: 170px; */
-  /* border: 1px solid #eee; */
-  /* background-color: #ddd; */
   padding: 2px;
   text-align: center;
 }
@@ -71,7 +69,13 @@ a {
 #Instructions h2 {
   font-family: 'Ranchers', cursive;
   font-size: 28px;
+  margin-bottom: 0px;
 }
+
+#Instructions p {
+  margin-bottom: 0;
+}
+
 
 #high-score h2 {
   font-family: 'Ranchers', cursive;

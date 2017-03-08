@@ -1531,7 +1531,7 @@ var showInstructions = function showInstructions(startGame) {
     $('#Instructions').hide();
     var music = createjs.Sound.play('music');
     music.volume = 0.4;
-    music.loop = true;
+    music.loop = -1;
     startGame();
   });
 };
