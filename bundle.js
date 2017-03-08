@@ -588,7 +588,7 @@ var moveWithMouse = exports.moveWithMouse = function moveWithMouse(stage, chicke
 };
 
 var bounce = exports.bounce = function bounce(chicken) {
-  chicken.yVelocity = -10;
+  chicken.yVelocity = -10.5;
 };
 
 var jump = exports.jump = function jump(chicken) {
@@ -1222,7 +1222,7 @@ var _movements = __webpack_require__(16);
 
 var checkCollisions = exports.checkCollisions = function checkCollisions(chicken, collidables, background, displayScore) {
   var chickenMaxX = chicken.x + 54;
-  var chickenMaxY = chicken.y + 46;
+  var chickenMaxY = chicken.y + 20;
 
   collidables.forEach(function (collidable, index) {
     var collidableMaxX = collidable.x + collidable.getTransformedBounds().width;
