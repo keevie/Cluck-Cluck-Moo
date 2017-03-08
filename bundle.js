@@ -352,7 +352,7 @@ module.exports = getMapData;
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(12);
+var getNative = __webpack_require__(13);
 
 /* Built-in method references that are verified to be native. */
 var nativeCreate = getNative(Object, 'create');
@@ -407,6 +407,65 @@ module.exports = eq;
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GROUND = exports.GROUND = 325;
+
+var moveWithMouse = exports.moveWithMouse = function moveWithMouse(stage, chicken, e) {
+  if (Math.round(chicken.x - 5) > Math.round(stage.mouseX)) {
+    chicken.x -= 6 * Math.abs((chicken.x - stage.mouseX) * 0.01);
+    chicken.scaleX = -1;
+  } else if (Math.round(chicken.x + 5) < Math.round(stage.mouseX)) {
+    chicken.x += 6 * Math.abs((chicken.x - stage.mouseX) * 0.01);
+    chicken.scaleX = 1;
+  }
+};
+
+var bounce = exports.bounce = function bounce(chicken) {
+  chicken.yVelocity = -10.5;
+};
+
+var jump = exports.jump = function jump(chicken) {
+  if (chicken.y === GROUND) {
+    chicken.y = GROUND - 1;
+    chicken.yVelocity = -12;
+  }
+};
+
+var fallWithGravity = exports.fallWithGravity = function fallWithGravity(chicken) {
+  if (chicken.y < GROUND) {
+    chicken.y += chicken.yVelocity;
+    chicken.yVelocity += 0.2;
+  } else {
+    chicken.y = GROUND;
+  }
+};
+
+var moveCows = exports.moveCows = function moveCows(cows) {
+  cows.forEach(function (cow) {
+    if (cow.x > 730) {
+      cow.scaleX = 0.25;
+      cow.direction = 'left';
+    } else if (cow.x < 0) {
+      cow.scaleX = -0.25;
+      cow.direction = 'right';
+    }
+    if (cow.direction === 'right') {
+      cow.x += 3;
+    } else {
+      cow.x -= 3;
+    }
+  });
+};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var defineProperty = __webpack_require__(20);
 
 /**
@@ -435,7 +494,7 @@ module.exports = baseAssignValue;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseIsNative = __webpack_require__(54),
@@ -458,10 +517,10 @@ module.exports = getNative;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(14),
+var isFunction = __webpack_require__(15),
     isLength = __webpack_require__(29);
 
 /**
@@ -497,7 +556,7 @@ module.exports = isArrayLike;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(7),
@@ -540,7 +599,7 @@ module.exports = isFunction;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -568,67 +627,10 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var moveWithMouse = exports.moveWithMouse = function moveWithMouse(stage, chicken, e) {
-  if (Math.round(chicken.x - 5) > Math.round(stage.mouseX)) {
-    chicken.x -= 6 * Math.abs((chicken.x - stage.mouseX) * 0.01);
-    chicken.scaleX = -1;
-  } else if (Math.round(chicken.x + 5) < Math.round(stage.mouseX)) {
-    chicken.x += 6 * Math.abs((chicken.x - stage.mouseX) * 0.01);
-    chicken.scaleX = 1;
-  }
-};
-
-var bounce = exports.bounce = function bounce(chicken) {
-  chicken.yVelocity = -10.5;
-};
-
-var jump = exports.jump = function jump(chicken) {
-  if (chicken.y === 325) {
-    chicken.y = 324;
-    chicken.yVelocity = -12;
-  }
-};
-
-var fallWithGravity = exports.fallWithGravity = function fallWithGravity(chicken) {
-  if (chicken.y < 325) {
-    chicken.y += chicken.yVelocity;
-    chicken.yVelocity += 0.2;
-  } else {
-    chicken.y = 325;
-  }
-};
-
-var moveCows = exports.moveCows = function moveCows(cows) {
-  cows.forEach(function (cow) {
-    if (cow.x > 730) {
-      cow.scaleX = 0.25;
-      cow.direction = 'left';
-    } else if (cow.x < 0) {
-      cow.scaleX = -0.25;
-      cow.direction = 'right';
-    }
-    if (cow.direction === 'right') {
-      cow.x += 3;
-    } else {
-      cow.x -= 3;
-    }
-  });
-};
-
-/***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(12),
+var getNative = __webpack_require__(13),
     root = __webpack_require__(1);
 
 /* Built-in method references that are verified to be native. */
@@ -653,7 +655,7 @@ module.exports = Symbol;
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseAssignValue = __webpack_require__(11),
+var baseAssignValue = __webpack_require__(12),
     eq = __webpack_require__(10);
 
 /**
@@ -679,7 +681,7 @@ module.exports = assignMergeValue;
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(12);
+var getNative = __webpack_require__(13);
 
 var defineProperty = (function() {
   try {
@@ -911,7 +913,7 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)(module)))
 
 /***/ }),
 /* 29 */
@@ -993,7 +995,7 @@ module.exports = isTypedArray;
 
 var arrayLikeKeys = __webpack_require__(49),
     baseKeysIn = __webpack_require__(56),
-    isArrayLike = __webpack_require__(13);
+    isArrayLike = __webpack_require__(14);
 
 /**
  * Creates an array of the own and inherited enumerable property names of `object`.
@@ -1038,7 +1040,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _movements = __webpack_require__(16);
+var _movements = __webpack_require__(11);
 
 var _util = __webpack_require__(38);
 
@@ -1218,7 +1220,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.checkCollisions = undefined;
 
-var _movements = __webpack_require__(16);
+var _movements = __webpack_require__(11);
 
 var checkCollisions = exports.checkCollisions = function checkCollisions(chicken, collidables, background, displayScore) {
   var chickenMaxX = chicken.x + 54;
@@ -1400,15 +1402,17 @@ var _cookies2 = _interopRequireDefault(_cookies);
 
 var _database = __webpack_require__(36);
 
+var _movements = __webpack_require__(11);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var checkIfLose = exports.checkIfLose = function checkIfLose(chicken, stage, tick) {
-  if (chicken.score > 0 && (chicken.y > 324 || chicken.yVelocity > 25)) {
+  if (chicken.score > 0 && (chicken.y > _movements.GROUND || chicken.yVelocity > 25)) {
     createjs.Ticker.removeAllEventListeners();
 
     var highScore = void 0;
-    (0, _database.getScore)().then(function (res) {
-      highScore = res;
+    (0, _database.getScore)().then(function (score) {
+      highScore = score;
       var newHighScore = false;
       if (chicken.score > highScore) {
         (0, _database.updateScore)(chicken.score);
@@ -1429,6 +1433,7 @@ var checkIfLose = exports.checkIfLose = function checkIfLose(chicken, stage, tic
     }
   }
 };
+
 var getPersonalHighScore = function getPersonalHighScore(chicken) {
   var highScore = _cookies2.default.getItem('highScore') || chicken.score;
   if (chicken.score > highScore) {
@@ -2472,7 +2477,7 @@ module.exports = arrayLikeKeys;
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseAssignValue = __webpack_require__(11),
+var baseAssignValue = __webpack_require__(12),
     eq = __webpack_require__(10);
 
 /** Used for built-in method references. */
@@ -2588,7 +2593,7 @@ module.exports = baseIsArguments;
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(14),
+var isFunction = __webpack_require__(15),
     isMasked = __webpack_require__(81),
     isObject = __webpack_require__(0),
     toSource = __webpack_require__(104);
@@ -2802,7 +2807,7 @@ var assignMergeValue = __webpack_require__(19),
     isArray = __webpack_require__(27),
     isArrayLikeObject = __webpack_require__(106),
     isBuffer = __webpack_require__(28),
-    isFunction = __webpack_require__(14),
+    isFunction = __webpack_require__(15),
     isObject = __webpack_require__(0),
     isPlainObject = __webpack_require__(107),
     isTypedArray = __webpack_require__(30),
@@ -3047,7 +3052,7 @@ function cloneBuffer(buffer, isDeep) {
 
 module.exports = cloneBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)(module)))
 
 /***/ }),
 /* 65 */
@@ -3102,7 +3107,7 @@ module.exports = copyArray;
 /***/ (function(module, exports, __webpack_require__) {
 
 var assignValue = __webpack_require__(50),
-    baseAssignValue = __webpack_require__(11);
+    baseAssignValue = __webpack_require__(12);
 
 /**
  * Copies properties of `source` to `object`.
@@ -3467,7 +3472,7 @@ module.exports = initCloneObject;
 /***/ (function(module, exports, __webpack_require__) {
 
 var eq = __webpack_require__(10),
-    isArrayLike = __webpack_require__(13),
+    isArrayLike = __webpack_require__(14),
     isIndex = __webpack_require__(23),
     isObject = __webpack_require__(0);
 
@@ -3860,7 +3865,7 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)(module)))
 
 /***/ }),
 /* 94 */
@@ -4209,7 +4214,7 @@ module.exports = constant;
 /* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isArrayLike = __webpack_require__(13),
+var isArrayLike = __webpack_require__(14),
     isObjectLike = __webpack_require__(4);
 
 /**
