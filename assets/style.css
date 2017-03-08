@@ -76,6 +76,7 @@ a {
 #high-score h2 {
   font-family: 'Ranchers', cursive;
   font-size: 28px;
+  margin-bottom: 10px;
 }
 
 #high-score {
