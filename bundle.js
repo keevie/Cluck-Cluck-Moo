@@ -1116,7 +1116,8 @@ var Game = function () {
       if (this.world.cameraMoveCounter < -3000) {
         this.generateCow(this.assets.chicken.y - 500);
         for (var i = 0; i < 11; i++) {
-          this.generateTrampolines(3, this.assets.chicken.y - 1000 + i * -300);
+          this.generateTrampolines(2, this.assets.chicken.y - 1000 + i * -300, true);
+          this.generateTrampolines(1, this.assets.chicken.y - 1000 + i * -300, false);
           this.generateClouds(2, this.assets.chicken.y - 1000 + i * -300);
         }
         this.world.cameraMoveCounter = 0;
@@ -1149,11 +1150,15 @@ var Game = function () {
     }
   }, {
     key: 'generateTrampolines',
-    value: function generateTrampolines(n, y) {
-      for (var i = 0; i <= n; i++) {
+    value: function generateTrampolines(n, y, randomY) {
+      for (var i = 0; i < n; i++) {
         var trampoline = (0, _merge2.default)({}, this.assets.trampoline);
         trampoline.x = Math.round(Math.random() * 730);
-        trampoline.y = y + Math.round(Math.random() * 200);
+        if (randomY) {
+          trampoline.y = y + Math.round(Math.random() * 200);
+        } else {
+          trampoline.y = y;
+        }
         trampoline.collidableType = 'trampoline';
         this.background.addChild(trampoline);
         this.collidables.push(trampoline);
