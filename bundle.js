@@ -1153,7 +1153,7 @@ var Game = function () {
       for (var i = 0; i <= n; i++) {
         var trampoline = (0, _merge2.default)({}, this.assets.trampoline);
         trampoline.x = Math.round(Math.random() * 730);
-        trampoline.y = y;
+        trampoline.y = y + Math.round(Math.random() * 200);
         trampoline.collidableType = 'trampoline';
         this.background.addChild(trampoline);
         this.collidables.push(trampoline);
