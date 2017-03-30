@@ -1580,7 +1580,7 @@ var startPreload = function startPreload(assets, startGame) {
 };
 
 var showInstructions = function showInstructions(startGame) {
-  $('#Instructions').show();
+  $('#Instructions').css('display', 'flex');
   $('#Instructions').on('click', function () {
     $('#Instructions').hide();
     window.music = createjs.Sound.play('music');

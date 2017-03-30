@@ -38,7 +38,7 @@ a {
   width: auto;
   height: 20px;
   position: absolute;
-  top: 420px;
+  top: 300px;
   width: 226px;
   padding: 2px;
   text-align: center;
@@ -60,7 +60,7 @@ a {
   border-radius: 4px;
   width: 400px;
   height: 400px;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   font-size: 18px;
