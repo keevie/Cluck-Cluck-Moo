@@ -1219,11 +1219,11 @@ var Game = function () {
     value: function handleMute(e) {
       // "m"
       if (e.keyCode === 77) {
-        if (window.music.paused === true) {
-          window.music.paused = false;
+        if (window.music.muted === true) {
+          window.music.muted = false;
           _cookies2.default.setItem('musicMuted', 'false');
         } else {
-          window.music.paused = true;
+          window.music.muted = true;
           _cookies2.default.setItem('musicMuted', 'true');
         }
       }
@@ -1587,7 +1587,7 @@ var showInstructions = function showInstructions(startGame) {
     window.music.volume = 0.4;
     window.music.loop = -1;
     if (_cookies2.default.getItem('musicMuted') === 'true') {
-      window.music.paused = true;
+      window.music.muted = true;
     }
     startGame();
   });
